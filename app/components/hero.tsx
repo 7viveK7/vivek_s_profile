@@ -155,7 +155,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Frontend Developer
+          Frontend Engineer
         </motion.p>
 
         <motion.p
@@ -209,7 +209,24 @@ export default function Hero() {
             View Projects
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
-          <Button variant="outline">Download Resume</Button>
+
+          <a 
+        href="../../public/Vivekananda_Resume.pdf" 
+        download="Vivekananda_Resume.pdf" 
+        // style={{
+        //   padding: '10px 20px',
+        //   backgroundColor: '#0a7ea4',
+        //   color: '#fff',
+        //   textDecoration: 'none',
+        //   borderRadius: '5px',
+        //   fontWeight: 'bold',
+        //   cursor: 'pointer',
+        // }}
+      >
+         <Button variant="outline">Download Resume
+         </Button>
+      </a>
+         
         </motion.div>
       </div>
     </div>

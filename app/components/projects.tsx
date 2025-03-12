@@ -58,7 +58,7 @@ export default function Projects() {
     // },
     {
       id: 4,
-      title: "Farmreach Web Dashboard",
+      title: "Web Dashboard",
       description:
         "Large-scale web application with optimized front-end architecture ensuring code quality and scalability.",
       category: "web",
