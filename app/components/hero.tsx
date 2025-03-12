@@ -164,7 +164,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Passionate Frontend Developer with 2+ years of experience building intuitive, responsive UIs. Specializing in
+          Passionate Frontend Developer with 3+ years of experience building intuitive, responsive UIs. Specializing in
           React, React Native, and Next.js to create exceptional user experiences.
         </motion.p>
 
