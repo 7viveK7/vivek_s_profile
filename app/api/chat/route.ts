@@ -26,7 +26,7 @@ export async function POST(request: Request) {
         
         About Vivekananda:
         - Frontend Developer with expertise in React, React Native, and Next.js
-        - 2+ years of professional experience
+        - 3+ years of professional experience
         - Skills: React Native, Next.js, React.js, JavaScript, TypeScript, Node.js, HTML, CSS
         - Previous work at Farmreach Technologies and Shivam Medisoft Services
         - Projects include HR Management App, E-commerce web application, and more
