@@ -43,19 +43,19 @@ export default function Projects() {
         "Integrated real-time product data",
       ],
     },
-    {
-      id: 3,
-      title: "Farmreach Mobile App",
-      description: "Cross-platform mobile application serving over 5,000+ users on both Android and iOS platforms.",
-      category: "mobile",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["React Native", "Expo", "MeiliSearch", "GraphQL"],
-      highlights: [
-        "Implemented real-time search with sub-50ms response times",
-        "Utilized Expo CLI and EAS Build for deployment",
-        "Achieved 4.6/5 star rating on app stores",
-      ],
-    },
+    // {
+    //   id: 3,
+    //   title: "Farmreach Mobile App",
+    //   description: "Cross-platform mobile application serving over 5,000+ users on both Android and iOS platforms.",
+    //   category: "mobile",
+    //   image: "/placeholder.svg?height=400&width=600",
+    //   technologies: ["React Native", "Expo", "MeiliSearch", "GraphQL"],
+    //   highlights: [
+    //     "Implemented real-time search with sub-50ms response times",
+    //     "Utilized Expo CLI and EAS Build for deployment",
+    //     "Achieved 4.6/5 star rating on app stores",
+    //   ],
+    // },
     {
       id: 4,
       title: "Farmreach Web Dashboard",
