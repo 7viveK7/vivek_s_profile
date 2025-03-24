@@ -4,8 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { Send, Mail, Phone, MapPin, Linkedin, Github } from "lucide-react"
+import { useForm as useFormspree } from "@formspree/react"
 
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -31,6 +32,7 @@ const formSchema = z.object({
 export default function Contact() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
+  const [state, submitForm] = useFormspree("mqapbnbj")
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,11 +44,14 @@ export default function Contact() {
     },
   })
 
+  useEffect(() => {
+    if (state.succeeded) {
+      form.reset()
+    }
+  }, [state.succeeded, form])
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
-    // In a real application, you would send this data to your server
-    alert("Message sent! I'll get back to you soon.")
-    form.reset()
+    submitForm(values)
   }
 
   const contactInfo = [
@@ -95,7 +100,12 @@ export default function Contact() {
                       <div>
                         <p className="text-sm font-medium text-gray-400">{item.label}</p>
                         {item.link ? (
-                          <a href={item.link} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-400"
+                          >
                             {item.value}
                           </a>
                         ) : (
@@ -134,71 +144,94 @@ export default function Contact() {
           >
             <Card className="border-zinc-800 bg-zinc-900/50">
               <CardContent className="p-6">
-                <h3 className="mb-6 text-xl font-semibold">Send Me a Message</h3>
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Your name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input placeholder="your@email.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="subject"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Subject</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Project inquiry" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Message</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Tell me about your project..."
-                              className="min-h-[120px]"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <Button type="submit" className="w-full">
-                      <Send className="mr-2 h-4 w-4" />
-                      Send Message
-                    </Button>
-                  </form>
-                </Form>
+                {state.succeeded ? (
+                  <div className="text-center p-6 space-y-4">
+                    <div className="text-green-500 text-2xl">🎉</div>
+                    <h3 className="text-xl font-semibold text-green-400">Message Sent!</h3>
+                    <p className="text-gray-400">Thank you for reaching out. I'll respond within 24 hours.</p>
+                  </div>
+                ) : (
+                  <>
+                    <h3 className="mb-6 text-xl font-semibold">Send Me a Message</h3>
+                    <Form {...form}>
+                      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                        <FormField
+                          control={form.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Name</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Your name" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email</FormLabel>
+                              <FormControl>
+                                <Input placeholder="your@email.com" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="subject"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Subject</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Project inquiry" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="message"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Message</FormLabel>
+                              <FormControl>
+                                <Textarea
+                                  placeholder="Tell me about your project..."
+                                  className="min-h-[120px]"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        {state.errors && (
+                          <div className="text-red-500 text-sm">
+                            {state.errors.map((error, index) => (
+                              <p key={index}>{error.message}</p>
+                            ))}
+                          </div>
+                        )}
+
+                        <Button
+                          type="submit"
+                          className="w-full transition-transform hover:scale-[1.02]"
+                          disabled={state.submitting}
+                        >
+                          <Send className="mr-2 h-4 w-4" />
+                          {state.submitting ? 'Sending...' : 'Send Message'}
+                        </Button>
+                      </form>
+                    </Form>
+                  </>
+                )}
               </CardContent>
             </Card>
           </motion.div>
@@ -215,4 +248,3 @@ export default function Contact() {
     </section>
   )
 }
-
