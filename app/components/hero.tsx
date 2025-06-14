@@ -174,14 +174,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="flex items-center gap-1">
-            <Phone size={14} />
-            <span>7680900838</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Mail size={14} />
-            <span>vivekanandamalladi9@gmail.com</span>
-          </div>
+         
           <div className="flex items-center gap-1">
             <MapPin size={14} />
             <span>Hyderabad, IN</span>
