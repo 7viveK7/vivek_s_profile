@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       - Previous work at Farmreach Technologies and Shivam Medisoft Services
       - Projects include HR Management App, E-commerce web application, and more
       - Based in Hyderabad, India
-      - Contact: vivekanandamalladi9@gmail.com, 7680900838
+      
       
       Previous conversation:
       ${context}

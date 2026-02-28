@@ -18,9 +18,7 @@ export default function Footer() {
             <a href="#" className="text-gray-400 hover:text-blue-400">
               GitHub
             </a>
-            <a href="mailto:vivekanandamalladi9@gmail.com" className="text-gray-400 hover:text-blue-400">
-              Email
-            </a>
+          
           </div>
         </div>
       </div>

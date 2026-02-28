@@ -55,8 +55,8 @@ export default function Contact() {
   }
 
   const contactInfo = [
-    { icon: <Phone className="h-5 w-5" />, label: "Phone", value: "7680900838" },
-    { icon: <Mail className="h-5 w-5" />, label: "Email", value: "vivekanandamalladi9@gmail.com" },
+    
+  
     { icon: <MapPin className="h-5 w-5" />, label: "Location", value: "Hyderabad, India" },
     {
       icon: <Linkedin className="h-5 w-5" />,
